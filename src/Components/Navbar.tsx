@@ -12,11 +12,16 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
+      <div className="links">
+        <Link to="/">Home</Link>
+        {user ? <Link to="/create-post">Create Post</Link> :  <Link to="/login">Login</Link>}
+      </div>
+
       {user && (
         <div className="user-info">
           <img
             src={user?.photoURL || ""}
-            alt="user photo"
+            alt="user google icon"
             height={50}
             width={50}
           />
@@ -26,11 +31,6 @@ export const Navbar = () => {
           </button>
         </div>
       )}
-
-      <div className="links">
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-      </div>
     </div>
   );
 };
