@@ -4,8 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {useNavigate} from 'react-router-dom'
- 
+import { useNavigate } from "react-router-dom";
+
 interface CreatePostData {
   title: string;
   description: string;
@@ -45,12 +45,27 @@ export const CreatePostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onCreatePost)} method="post">
-      <input type="text" placeholder="Title..." {...register("title")} />
-      <p style={{ color: "red" }}>{errors.title?.message}</p>
-      <textarea placeholder="Description..." {...register("description")} />
-      <p style={{ color: "red" }}>{errors.description?.message}</p>
-      <input type="submit" />
-    </form>
+    <div className="create-post-container">
+      <form
+        onSubmit={handleSubmit(onCreatePost)}
+        method="post"
+        className="form-container"
+      >
+        <input
+          type="text"
+          placeholder="Title..."
+          {...register("title")}
+          className="form-input"
+        />
+        <p className="form-error">{errors.title?.message}</p>
+        <textarea
+          placeholder="Description..."
+          {...register("description")}
+          className="form-textarea"
+        />
+        <p className="form-error">{errors.description?.message}</p>
+        <input type="submit" className="form-button" />
+      </form>
+    </div>
   );
 };

@@ -17,7 +17,6 @@ export const Home = () => {
 
   const getPosts = async () => {
     let data = await getDocs(postsRef);
-    console.log(data);
     setPostsList(
       data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Post[]
     );
@@ -29,8 +28,8 @@ export const Home = () => {
 
   return (
     <div>
-      {postsList?.map((post) => 
-        <Post post={post} />
+      {postsList?.map((post, i) => 
+        <Post post={post} key={i}/>
       )}
     </div>
   );
